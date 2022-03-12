@@ -20,7 +20,7 @@ export default function Signin(props) {
 
   const onSigninPressed= async (credentials) => {
     console.log("Sign in")
-    const url ='http://localhost:5000/userauth/login';
+ /*   const url ='http://localhost:5000/userauth/login';
 try{
     const res = await fetch(url, credentials, {
       method:'POST',
@@ -40,7 +40,8 @@ try{
   }catch{
 
     console.log('login incomplete')
-  }
+  }*/
+  navigation.navigate('Home')
   }
   
 
