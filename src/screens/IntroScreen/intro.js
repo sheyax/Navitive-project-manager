@@ -39,10 +39,11 @@ container: {
 },
 
 circle:{
-    width: 100,
-    height: 100,
+    width: 200,
+    height: 200,
     backgroundColor: '#E3E4E2',
     marginBottom: '100px',
-    marginTop: '50px'
+    marginTop: '50px',
+    borderRadius: '100%'
 }
 })

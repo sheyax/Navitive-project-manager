@@ -11,8 +11,7 @@ export default function CustomButtom({onPress, text, type="PRIMARY", bgColor, fg
     fgColor ? {backgroundColor: fgColor} : {}]}>{text}</Text>
 
     
-    </Pressable
-    >
+    </Pressable>
   );
 }
 
