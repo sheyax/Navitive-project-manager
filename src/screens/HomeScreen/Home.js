@@ -8,14 +8,15 @@ export default function Home() {
   
 
   return (
-    <View>
+    <View >
       
 
         <ScrollView
         scrollEventThrottle={20}>
-<View style={{flex:1, backgroundColor:'white', padding: 20}}>
+<View style={{flex:1, padding: 20}}>
           <Text style={{ fontSize:24, 
           fontWeight: 'bold', 
+          marginTop:20,
           paddingHorizontal: 20}}>
             Tasks to be completed
             </Text>
@@ -23,7 +24,7 @@ export default function Home() {
 
             <View style={{ height:200, marginTop: 20}}>
               <ScrollView horizontal={true}
-              showsVerticalScrollIndicator={false}>
+              showsHorizontalScrollIndicator={false}>
                 <CustomScrollItem imageUri={require('../../../assets/logo.png')} name='Task 1' />
 
                 <CustomScrollItem imageUri={require('../../../assets/logo.png')} name='Task 2' />
@@ -38,10 +39,10 @@ export default function Home() {
 
         </ScrollView>
 
-        <View style={{marginTop: 20, padding:20}}>
+        <View style={{marginTop:5, padding:20}}>
           <Text style={{fontSize:24, fontWeight:'bold', paddingHorizontal:20}}>Upcoming Events</Text>
 
-          <View style={{marginTop: 20, paddingHorizontal:20, height:340}}>
+          <View style={{marginTop: 20, paddingHorizontal:20, height:300}}>
             <ScrollView showsVerticalScrollIndicator={false}>
 
               <CustomEvent text='Commandant dinner with staff' type='REGULAR'/>

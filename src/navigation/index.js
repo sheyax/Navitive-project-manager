@@ -35,6 +35,7 @@ tabBarShowLabel: false
   <Tab.Screen name='Signin' component={Signin}/>
   <Tab.Screen name='Signup' component={Signup}/>
 </Tab.Navigator>
+
       </NavigationContainer>
    
   );

@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
       padding: 20,
+      marginTop:20,
     },
 
     logo:{
