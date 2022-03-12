@@ -5,7 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import Signin from '../screens/SigninScreen/Signin'
 import Signup from '../screens/SignupScreen/Signup'
 import Home from '../screens/HomeScreen/Home'
-import Intro from '../screens/IntroScreen/intro'
+import Intro from '../screens/IntroScreen/Intro'
 
 export default function Navigation() {
 
@@ -14,7 +14,7 @@ export default function Navigation() {
       <NavigationContainer>
 
 <Stack.Navigator 
-initialRouteName='Home'
+initialRouteName='Intro'
 screenOptions={{headerShown: false}}>
   <Stack.Screen name='Intro' component={Intro}/>
   <Stack.Screen name='Home' component={Home}/>
