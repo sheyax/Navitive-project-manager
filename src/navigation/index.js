@@ -7,6 +7,7 @@ import Signin from '../screens/SigninScreen/Signin'
 import Signup from '../screens/SignupScreen/Signup'
 import Home from '../screens/HomeScreen/Home'
 import Intro from '../screens/IntroScreen/Intro'
+import NewTask from '../screens/NewTaskScreen/NewTask'
 
 export default function Navigation() {
 
@@ -15,26 +16,18 @@ export default function Navigation() {
   return (
       <NavigationContainer>
 
-<Tab.Navigator 
-initialRouteName='Home'
+<Stack.Navigator 
+initialRouteName='Intro'
 screenOptions={{
-  tabBarStyle: { position: 'absolute',
-bottom: 25,
-left: 20,
-right:20,
-backgroundColor: 'gray',
-borderRadius:20,
-height:90,
-justifyContent: 'center'},
-
 headerShown: false,
-tabBarShowLabel: false
+
 }}>
-  <Tab.Screen name='Intro' component={Intro}/>
-  <Tab.Screen name='Home' component={Home}/>
-  <Tab.Screen name='Signin' component={Signin}/>
-  <Tab.Screen name='Signup' component={Signup}/>
-</Tab.Navigator>
+  <Stack.Screen name='Intro' component={Intro}/>
+  <Stack.Screen name='Home' component={Home}/>
+  <Stack.Screen name='Signin' component={Signin}/>
+  <Stack.Screen name='Signup' component={Signup}/>
+  <Stack.Screen name='NewTask' component={NewTask}/>
+</Stack.Navigator>
 
       </NavigationContainer>
    

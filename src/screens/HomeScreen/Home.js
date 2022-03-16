@@ -1,9 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import { Text, View, ScrollView, Image } from 'react-native';
+import CustomButton from '../../components/CustomButton';
 import CustomEvent from '../../components/CustomEvent';
 import CustomScrollItem from '../../components/CustomScrollItem/CustomScrollItem'
-export default function Home() {
+export default function Home(props) {
   const [notes, setNotes]= useState(null);
+
+  const handleNewTask=(props)=>{
+    console.log('new task page')
+    props.navigation.navigate('NewTask')
+  }
 
   
 
@@ -60,6 +66,10 @@ export default function Home() {
             </ScrollView>
           </View>
         </View>
+
+        <View>
+          <CustomButton text='New Task' onPress={()=>handleNewTask(props)}/>
+          </View>
     
     </View>
   );
