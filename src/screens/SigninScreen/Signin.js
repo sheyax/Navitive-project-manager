@@ -11,7 +11,8 @@ export default function Signin(props) {
   const {height}= useWindowDimensions
   const [username, setUsername]= useState('');
   const [password, setPassword]= useState('');
-
+  const[message, setMessage]= useState();
+  const[messageType, setMessageType]= useState()
   const navigation= useNavigation();
 
 
@@ -20,30 +21,51 @@ export default function Signin(props) {
 
   const onSigninPressed= async (credentials) => {
     console.log("Sign in")
- /*   const url ='http://localhost:5000/userauth/login';
-try{
-    const res = await fetch(url, credentials, {
-      method:'POST',
-      headers:{'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                username,
-                password
-            })
+ const url = 'http://localhost:5000/userauth/login';
 
-    }).then((response)=>{
-      console.log('logged in ')
+ /*axios
+ .post(url, credentials)
+ .then((response) => {
+   const result = response.data();
+   const{email, password} = result;
+
+   if (username!==''|| password!== ''){
     navigation.navigate('Home')
-    }
-    )
+   }else{
+     handleMessage('this is not a valid login')
+     console.log('invalid credentials')
+   }
+ })
+ .catch((error) => {
+   console.log('invalid credentials')
+ })*/
 
-    
-  }catch{
-
-    console.log('login incomplete')
-  }*/
+ await fetch(url, {
+   method: 'POST',
+   headers: {'Accept': 'application/json'},
+   credentials: 'include',
+   body: JSON.stringify({
+     username,
+     password
+   })
+ }).then((response)=>{
+   const result = response.data();
+   console.log(result);
   navigation.navigate('Home')
+  
+
+ }).catch((error)=>{
+   console.log('could not load')
+ })
+
+  
   }
   
+
+  const handleMessage = (message, type='Failed') => {
+    setMessage(message);
+    setMessageType(type);
+  }
 
   const onForgotPressed = () =>{
     console.log("Forgot Password")
@@ -64,6 +86,7 @@ try{
         setValue={setPassword} 
         secureTextEntry/>
 
+        <Text >{message}</Text>
         <CustomButton text='Sign in ' onPress={onSigninPressed}/>
 
         <CustomButton text='Forgot Password ? ' onPress={onForgotPressed} type="TETIARY"/>

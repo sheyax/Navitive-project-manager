@@ -1,22 +1,82 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
-
+import { Image, Text, View, StyleSheet} from 'react-native';
+import {ClockIcon} from 'react-native-heroicons/outline'
 export default function CustomScrollItem({imageUri, name}) {
   return (
-    <View style={{ height:200, width: 130, marginLeft:20, borderWidth:0.5 ,
-        borderColor:'#ddddd', borderRadius:25}}>
+    <View style={styles.container}>
 
-          <View style={{ flex:2,}}>
-            <Image source={imageUri}
-            style={{flex:1, height:null, width:null, resizeMode:'cover'}}
-            />
+          <View style={styles.flexa}>
+           <Text style={styles.title}>C-130 72 hour inspection</Text>
 
+           <Text style={styles.category}>Avionics, Powerplant, Airframe</Text>
+
+           <View style={styles.dateContainer}>
+             <ClockIcon style={styles.dateIcon}/>
+             <Text style={styles.dateText}>March 24, 2022</Text>
+           </View>
           </View>
 
-          <View style={{ flex:1, padding:10}}>
-            <Text style={{fontWeight:'bold'}}>{name}</Text>
+          <View style={styles.progressBar}>
+            <Text style={styles.progressText}>Progress</Text>
           </View>
           
         </View>
   );
 }
+
+const styles = StyleSheet.create({
+  title:{
+    fontSize: 30,
+    fontWeight:'bold',
+    paddingTop: 30,
+    paddingHorizontal: 16,
+    
+  },
+   container:{
+    height:280, 
+    width: 260, 
+    marginLeft:20,  
+    borderRadius:10,
+    backgroundColor: '#fff'
+   },
+
+   category:{
+     paddingHorizontal: 16,
+     fontSize: 18,
+     marginTop: 15,
+
+
+   },
+   dateContainer:{
+     backgroundColor: '#CDCDCD',
+     marginLeft: 16,
+     height:40,
+     width: 180, 
+     borderRadius: 10,
+     flexDirection: 'row',
+     alignItems: 'center',
+     
+
+   },
+   dateIcon:{
+     width: 30,
+     height: 30,
+     color: '#5C5C5C',
+     marginLeft: 5,
+     marginRight: 5,
+   },
+
+   progressBar:{
+     backgroundColor:'#5E85E1',
+     height: 65,
+     marginTop: 10,
+   },
+
+   progressText: {
+     color:'#E4E2E2',
+     paddingHorizontal: 16,
+     paddingTop: 16
+   }
+
+
+})
