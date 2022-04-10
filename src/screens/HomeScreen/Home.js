@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Text, View, ScrollView, Image, StyleSheet } from 'react-native';
+import { Text, View, ScrollView,SafeAreaView, Image, StyleSheet } from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import CustomEvent from '../../components/CustomEvent';
 import CustomScrollItem from '../../components/CustomScrollItem/CustomScrollItem'
@@ -24,8 +24,11 @@ export default function Home(props) {
   const getTask= ()=>{
     return axios.get('http://localhost:3002/Tasks')
     .then((response)=> {setTasks(response.data)
+
       })
     .catch((err)=> console.log(err))
+
+
   }
 
   getTask();
@@ -59,7 +62,7 @@ export default function Home(props) {
 
 
   return (
-    <View >
+    <SafeAreaView >
 
       <View>
         <CustomProfile 
@@ -81,7 +84,7 @@ export default function Home(props) {
           <Text style={{ fontSize:25, 
           fontWeight: 'bold', 
           color:'#052E8F',
-          marginTop:20,
+          marginTop:10,
           paddingHorizontal: 20}}>
             Latest Project
             </Text>
@@ -117,24 +120,24 @@ export default function Home(props) {
           <View style={{marginTop: 20, paddingHorizontal:20, height:200}}>
             <ScrollView showsVerticalScrollIndicator={false}>
 
-              {tasks && tasks.map((task)=>(
+             {/* {tasks && tasks.map((task)=>(
                 <View key={task.id}>
                   <CustomEvent text={task.title} type='REGULAR' date={task.deadline}/>
 
                 </View>
-              ))}
+             ))} */}
 
               
-{/*
-              <CustomEvent text='Chief visit to unit' type='URGENT'/>
 
-              <CustomEvent text='Chief visit to unit' />
+              <CustomEvent text='Chief visit to unit' type='URGENT' date='22-04-22'/>
 
-              <CustomEvent text='Chief visit to unit' type='REGULAR'/>
+              <CustomEvent text='Chief visit to unit' date='22-04-22' />
 
-              <CustomEvent text='Chief visit to unit' type='URGENT'/>
+              <CustomEvent text='Chief visit to unit' type='REGULAR' date='22-04-22'/>
 
-              <CustomEvent text='Chief visit to unit' type='URGENT'/> */}
+              <CustomEvent text='Chief visit to unit' type='URGENT' date='22-04-22'/>
+
+              <CustomEvent text='Chief visit to unit' type='URGENT' date='22-04-22'/> 
               
             </ScrollView>
           </View>
@@ -144,7 +147,7 @@ export default function Home(props) {
           <CustomButton text='New Task' onPress={()=>handleNewTask(props)}/>
           </View>
     
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -154,14 +157,14 @@ const styles= StyleSheet.create({
   search:{
     marginLeft: 25,
     marginRight: 25,
-    borderWidth:0.8,
-    borderRadius:10
+  
   },
 
   latest:{
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'between'
+    
+    
   }
 
 })

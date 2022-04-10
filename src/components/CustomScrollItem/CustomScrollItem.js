@@ -1,8 +1,20 @@
 import React from 'react';
-import { Image, Text, View, StyleSheet} from 'react-native';
+import { Image, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {ClockIcon} from 'react-native-heroicons/outline'
+
+import {useNavigation} from '@react-navigation/native'
+
+
 export default function CustomScrollItem({imageUri, name}) {
+
+  const navigation = useNavigation();
+
+  const onClick= () => {
+        navigation.navigate('ProjectDetailScreen')
+  }
   return (
+
+    <TouchableOpacity onPress={onClick}>
     <View style={styles.container}>
 
           <View style={styles.flexa}>
@@ -21,6 +33,7 @@ export default function CustomScrollItem({imageUri, name}) {
           </View>
           
         </View>
+        </TouchableOpacity>
   );
 }
 

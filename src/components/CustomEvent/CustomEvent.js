@@ -1,14 +1,25 @@
 import React from 'react';
-import { Pressable, Text, View , StyleSheet} from 'react-native';
+import { Pressable, Text, View , StyleSheet, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native'
+
 
 export default function CustomEvent({text,type, onPress, bgColor, fgColor, date}) {
+
+
+    const navigation = useNavigation();
+
+    const onClick= () =>{
+        navigation.navigate('EventDetail')
+    }
   return (
-    <Pressable style={[styles.container, styles[`container_${type}`], 
+      <TouchableOpacity onPress={onClick}>
+    <View style={[styles.container, styles[`container_${type}`], 
     bgColor ? {backgroundColor: bgColor} : {}]} 
     onPress={onPress}>
                 <Text style={styles.info}>{text}</Text>
                 <Text style={styles.dateStyle}>{date}</Text>
-              </Pressable>
+              </View>
+              </TouchableOpacity>
   );
 }
 
@@ -16,10 +27,10 @@ const styles= StyleSheet.create({
 
     container:{
         borderWidth:0.5, 
-        height:100, 
+        height:60, 
         width: '100%',
         borderRadius: 5,
-        marginBottom:20,
+        marginBottom:10,
 
     },
 
@@ -34,18 +45,18 @@ const styles= StyleSheet.create({
     },
 
     info:{
-        fontSize:20,
+        fontSize:18,
         fontWeight:'400',
         paddingLeft:20,
-        paddingTop: 20,
+        paddingTop: 10,
         fontWeight:'500'
 
     },
 
     dateStyle:{
-        fontSize: 20,
+        fontSize: 12,
         marginLeft: 20,
-        marginTop:14,
+        marginTop:5,
         color:'#5C5C5C'
     }
 })

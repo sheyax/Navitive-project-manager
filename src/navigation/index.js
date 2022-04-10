@@ -10,10 +10,11 @@ import Intro from '../screens/IntroScreen/Intro'
 import NewTask from '../screens/NewTaskScreen/NewTask'
 import {HomeIcon} from 'react-native-heroicons/solid';
 import {HomeIcon as HomeIconOutline} from 'react-native-heroicons/outline';
-
+import ProjectDetailScreen from '../screens/ProjectDetailScreen/ProjectDetailScreen';
+import EventDetail from '../screens/EventDetailScreen/EventDetail';
 export default function Navigation() {
 
-  const [isSignedIn, setIsSignedIn] =useState(true)
+  const [isSignedIn, setIsSignedIn] =useState(false)
 
   const Stack= createNativeStackNavigator();
   const Tab= createBottomTabNavigator();
@@ -69,6 +70,8 @@ headerShown: false,
   <Stack.Screen name='Signin' component={Signin}/>
   <Stack.Screen name='Signup' component={Signup}/>
   <Stack.Screen name='NewTask' component={NewTask}/>
+  <Stack.Screen name='ProjectDetailScreen' component={ProjectDetailScreen}/>
+  <Stack.Screen name='EventDetail' component={EventDetail}/>
 </Stack.Navigator>
 
       </NavigationContainer>

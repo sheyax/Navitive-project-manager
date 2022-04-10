@@ -21,43 +21,7 @@ export default function Signin(props) {
 
   const onSigninPressed= async (credentials) => {
     console.log("Sign in")
- const url = 'http://localhost:5000/userauth/login';
-
- /*axios
- .post(url, credentials)
- .then((response) => {
-   const result = response.data();
-   const{email, password} = result;
-
-   if (username!==''|| password!== ''){
-    navigation.navigate('Home')
-   }else{
-     handleMessage('this is not a valid login')
-     console.log('invalid credentials')
-   }
- })
- .catch((error) => {
-   console.log('invalid credentials')
- })*/
-
- await fetch(url, {
-   method: 'POST',
-   headers: {'Accept': 'application/json'},
-   credentials: 'include',
-   body: JSON.stringify({
-     username,
-     password
-   })
- }).then((response)=>{
-   const result = response.data();
-   console.log(result);
   navigation.navigate('Home')
-  
-
- }).catch((error)=>{
-   console.log('could not load')
- })
-
   
   }
   

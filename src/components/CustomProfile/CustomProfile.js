@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image} from 'react-native';
+import { View, Text, StyleSheet, Image, SafeAreaView} from 'react-native';
 
 export default function CustomProfile({imageUri, profileName, profileRank}) {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
 
         <Image style={styles.profilepic} uri={imageUri}/>
         <View>
@@ -11,34 +11,36 @@ export default function CustomProfile({imageUri, profileName, profileRank}) {
             <Text style={styles.profilerank}>{profileRank}</Text>
         </View>
     
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
 container: {
-
-    padding:30,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingHorizontal: 25,
+    paddingTop: 40,
+    paddingBottom: 20,
 
 },
 
 profilepic:{
-  height: 60,
-  width: 60,
+  height: 50,
+  width: 50,
   borderRadius: 50,
   borderWidth:0.8,
   marginRight: 10,
+  backgroundColor: '#FFFFFF',
 
 },
 
 profilename:{
-  fontWeight:700,
-  fontSize: 25
+  fontWeight:"700",
+  fontSize: 20
 },
 
 profilerank:{
-  fontsize: 18
+  fontSize: 14
 }
 
 
