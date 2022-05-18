@@ -9,7 +9,7 @@ export default function Intro(props) {
 
     const handleStarted=(props)=>{
         console.log('stareted')
-        props.navigation.navigate('Signup')
+        props.navigation.navigate('Signin')
     }
 
   return (

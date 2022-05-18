@@ -7,6 +7,7 @@ import CustomDateInput from '../../components/CustomDateInput/CustomDateInput';
 import CustomButton from '../../components/CustomButton';
 import axios from 'axios'
 import {useNavigation} from '@react-navigation/native'
+import tw from 'tailwind-react-native-classnames'
 
 export default function NewTask() {
 
@@ -14,9 +15,10 @@ export default function NewTask() {
 
   const [title, setTitle]= useState('');
   const [description, setDescription]= useState('');
+  
 const onPost= async () => {
   console.log('posted')
- const res= await fetch('https://elenu1.herokuapp.com/Tasks', {
+ const res= await fetch('http://192.168.88.231:3200/Projects', {
    method: 'POST',
    headers:{'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -32,15 +34,19 @@ const onPost= async () => {
 
 
   return (
-    <View style={styles.container}>
-        <Text style={styles.head}>New Task</Text>
-
+    <View style={tw``}>
+      <View style={tw`p-5 bg-gray-400`}>
+      <Text style={tw`pt-10 text-2xl font-bold `}>New Project</Text>
+      </View>
+        
+        <View style={tw`p-5`}>
         <CustomInput placeholder="Title" value={title} setValue={setTitle}/>
         <CustomMultiLine placeholder='Description' value={description} setValue={setDescription}/>
 
-        {/*<CustomDateInput />*/}
+        <CustomDateInput />
 
-        <CustomButton text='Add new Task' onPress={onPost} />
+        <CustomButton text='Add new project' onPress={onPost} />
+        </View>
 
         
     

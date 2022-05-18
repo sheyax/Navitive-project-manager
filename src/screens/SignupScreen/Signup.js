@@ -9,7 +9,7 @@ import axios from 'axios'
 export default function Signup(props) {
 
   const {height}= useWindowDimensions
-  const [username, setUsername]= useState('');
+  const [name, setName]= useState('');
   const [password, setPassword]= useState('');
   const [email, setEmail]= useState('');
   const [passwordRepeat, setPasswordRepeat]= useState('');
@@ -19,29 +19,25 @@ export default function Signup(props) {
   
   const onRegisterPressed= async (credentials) =>{
 
-  /*  const url ='http://localhost:5000/userauth/register';
-try{
-    const res = await fetch(url, credentials, {
-      method:'POST',
-      headers:{'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                username,
-                email,
-                password
-            })
+    const resp= await fetch('http://192.168.123.231:5000/userauth/register', {
+        method: 'POST',
+        headers:{'Content-Type': 'application/json'},
+        credentials: 'include',
+        body: JSON.stringify({
+            name,
+            email,
+            password
+        }),
+    })
 
-    }).then((response)=>{
-      console.log('Registerd ')
-    navigation.navigate('Signin')
-    }
-    )
-
+    const data = await resp.json();
+    console.log(data)
+      navigation.navigate('Signin')
     
-  }catch{
 
-    console.log('register incomplete')
-  }*/
-  navigation.navigate('Signin')
+    setEmail('');
+    setPassword('');
+    setName('');
 
   }
 
@@ -59,7 +55,7 @@ try{
         <Text style={styles.title}>Create an acount</Text>
 
         <View style={styles.inputArea}>
-        <CustomInput placeholder="Username" value={username} setValue={setUsername} />
+        <CustomInput placeholder="Username" value={name} setValue={setName} />
         <CustomInput placeholder="Email" value={email} setValue={setEmail} />
         <CustomInput placeholder="Password" value={password} 
         setValue={setPassword} 

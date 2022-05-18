@@ -1,30 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {ClockIcon} from 'react-native-heroicons/outline'
+import axios from 'axios'
 
 import {useNavigation} from '@react-navigation/native'
 
 
-export default function CustomScrollItem({imageUri, name}) {
+export default function CustomScrollItem({imageUri, title, category, deadline,details, tasks }) {
 
   const navigation = useNavigation();
+ 
 
   const onClick= () => {
-        navigation.navigate('ProjectDetailScreen')
+        navigation.navigate('ProjectDetailScreen',{ 
+          title: title,
+          deadline: deadline,
+          details: details,
+          tasks: tasks
+        } )
   }
+
+  
+
+  
+
   return (
 
     <TouchableOpacity onPress={onClick}>
+      
     <View style={styles.container}>
 
           <View style={styles.flexa}>
-           <Text style={styles.title}>C-130 72 hour inspection</Text>
+            
+           <Text style={styles.title}>{title}</Text>
 
-           <Text style={styles.category}>Avionics, Powerplant, Airframe</Text>
+           <Text style={styles.category}>{category}</Text>
 
            <View style={styles.dateContainer}>
              <ClockIcon style={styles.dateIcon}/>
-             <Text style={styles.dateText}>March 24, 2022</Text>
+             <Text style={styles.dateText}>{deadline}</Text>
            </View>
           </View>
 

@@ -33,19 +33,22 @@ export default function CustomDateInput({}) {
 
   return (
     <View style={styles.container}>
+
+    
 <View>
-        <Button onPress={showDatepicker} title="Show date picker!" />
+        <Button onPress={showDatepicker} title="Project Dealine" />
       </View>
-      <View>
+     {/*<View>
         <Button onPress={showTimepicker} title="Show time picker!" />
-      </View>
+  </View> */}
       <Text>selected: {date.toLocaleString()}</Text>
       {show && (
         <DateTimePicker
-          testID="dateTimePicker"
+          testID="datePicker"
+          format="YYYY-MM-DD"
           value={date}
           mode={mode}
-          is24Hour={true}
+          is24Hour={false}
           onChange={onChange}
         />
       )}

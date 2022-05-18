@@ -9,27 +9,42 @@ import axios from 'axios';
 export default function Signin(props) {
 
   const {height}= useWindowDimensions
-  const [username, setUsername]= useState('');
-  const [password, setPassword]= useState('');
+  const [email, setEmail]= useState(null);
+  const [password, setPassword]= useState(null);
   const[message, setMessage]= useState();
   const[messageType, setMessageType]= useState()
   const navigation= useNavigation();
 
 
-  //connect to database
-
-
+  //connect to databas
   const onSigninPressed= async (credentials) => {
-    console.log("Sign in")
-  navigation.navigate('Home')
+    console.log('Posted')
+        
+    const resp= await fetch('http://192.168.123.231:5000/userauth/login', {
+        method: 'POST',
+        headers:{'Content-Type': 'application/json'},
+        credentials: 'include',
+        body: JSON.stringify({
+            email,
+            password
+        }),
+    })
+
+    const data = await resp.json();
+    if (data.message !== 'success') {
+      console.log('invalid Credentials')
+    } else {
+      navigation.navigate('Home')
+    }
+
+    setEmail('');
+    setPassword('');
+
   
   }
   
 
-  const handleMessage = (message, type='Failed') => {
-    setMessage(message);
-    setMessageType(type);
-  }
+  
 
   const onForgotPressed = () =>{
     console.log("Forgot Password")
@@ -45,7 +60,7 @@ export default function Signin(props) {
         <View style={styles.box}></View>
 
         <View style={styles.inputArea}>
-        <CustomInput placeholder="Username" value={username} setValue={setUsername} />
+        <CustomInput placeholder="Username" value={email} setValue={setEmail} />
         <CustomInput placeholder="Password" value={password} 
         setValue={setPassword} 
         secureTextEntry/>
