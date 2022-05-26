@@ -35,7 +35,7 @@ export default function ProjectDetailScreen() {
 
       <View style={tw`mt-2 p-5`}>
         <Text style={tw`font-bold text-base `}>Tasks</Text> 
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} >
       {route.params.tasks && route.params.tasks.map(task =>(
           <View key={task._id}>
           <TouchableOpacity style={tw`flex-row justify-between mt-5 border-2 p-5 rounded-lg`}

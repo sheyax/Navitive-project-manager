@@ -53,30 +53,32 @@ export default function CustomScrollItem({imageUri, title, category, deadline,de
 
 const styles = StyleSheet.create({
   title:{
-    fontSize: 30,
+    fontSize: 20,
     fontWeight:'bold',
     paddingTop: 30,
     paddingHorizontal: 16,
     
   },
    container:{
-    height:280, 
-    width: 260, 
-    marginLeft:20,  
+    height:200, 
+    width: 350, 
+    margin:'auto', 
+    marginTop: 25, 
     borderRadius:10,
     backgroundColor: '#fff'
    },
 
    category:{
      paddingHorizontal: 16,
-     fontSize: 18,
+     fontSize: 14,
      marginTop: 15,
 
 
    },
    dateContainer:{
      backgroundColor: '#CDCDCD',
-     marginLeft: 16,
+     marginLeft: 10,
+     marginTop: 1,
      height:40,
      width: 180, 
      borderRadius: 10,

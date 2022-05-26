@@ -20,7 +20,7 @@ export default function Signin(props) {
   const onSigninPressed= async (credentials) => {
     console.log('Posted')
         
-    const resp= await fetch('http://192.168.123.231:5000/userauth/login', {
+    const resp= await fetch('https://paradeapp.herokuapp.com/userauth/login', {
         method: 'POST',
         headers:{'Content-Type': 'application/json'},
         credentials: 'include',

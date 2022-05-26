@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Keyboard} from 'react-native'
 import CustomInput from '../../components/CustomInput/CustomInput';
 import TabNav from '../../tabNavigation';
 import CustomMultiLine from '../../components/CustomMultiLine/CustomMultiLine';
@@ -14,21 +14,34 @@ export default function NewTask() {
   const navigation = useNavigation();
 
   const [title, setTitle]= useState('');
-  const [description, setDescription]= useState('');
+  const [message, setMessage]= useState('');
+  const [task, setTask]=useState();
+  const [tasks, setTasks]= useState([]);
   
-const onPost= async () => {
+const onPost= async (credentials) => {
   console.log('posted')
- const res= await fetch('http://192.168.88.231:3200/Projects', {
-   method: 'POST',
-   headers:{'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                title,
-                description
-            }),
+  const resp= await fetch('https://paradeapp.herokuapp.com/postMessage', {
+    method: 'POST',
+    headers:{'Content-Type': 'application/json'},
+    credentials: 'include',
+    body: JSON.stringify({
+        title,
+        message,
+        tasks
+    }),
+}).then(navigation.navigate('Home'))
 
- }).then(navigation.navigate('Home'))
+}
 
- 
+const addTask = () =>{
+  
+  if (task !== null){
+    Keyboard.dismiss()
+    setTasks([...tasks, {task}])
+    console.log(task)
+    console.log(tasks)
+  }
+  setTask('')
 
 }
 
@@ -41,7 +54,22 @@ const onPost= async () => {
         
         <View style={tw`p-5`}>
         <CustomInput placeholder="Title" value={title} setValue={setTitle}/>
-        <CustomMultiLine placeholder='Description' value={description} setValue={setDescription}/>
+        <CustomMultiLine placeholder='Description' value={message} setValue={setMessage}/>
+<View style={{display: 'flex', flexDirection: 'row', 
+alignItems: 'center'}}>
+
+  <View style={{width: 300,}}>
+<CustomInput placeholder="Add Tasks" value={task} setValue={setTask}/>
+</View>
+<TouchableOpacity 
+onPress={addTask}
+style={{backgroundColor: 'green', width: 50, 
+height:50, alignItems: 'center',borderRadius: 10,
+marginLeft: 10}}>
+  <Text style={{color: 'white', fontSize:30, margin: 'auto',}}>+</Text>
+</TouchableOpacity>
+</View>
+        
 
         <CustomDateInput />
 

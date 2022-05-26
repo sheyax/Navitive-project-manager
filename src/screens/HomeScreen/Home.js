@@ -15,6 +15,7 @@ export default function Home(props) {
   const[user, setUser]= useState('') 
   const[rank, setRank]= useState(null)
   const [projects, setProjects]= useState(null)
+  const [isAdmin, setIsAdmin]= useState(false)
 
 
   const handleNewTask=(props)=>{
@@ -23,7 +24,7 @@ export default function Home(props) {
   }
 
   const getProject = async () => {
-    const resp = await fetch("http://192.168.123.231:5000/postMessage");
+    const resp = await fetch("https://paradeapp.herokuapp.com/postMessage");
     const data = await resp.json();
     setProjects(data)
   }
@@ -33,7 +34,7 @@ export default function Home(props) {
 useEffect(() => {
   getProject()
 
-}, [])
+}, [projects])
 
 
   /*const getTask= async (credentials) => {
@@ -50,7 +51,7 @@ useEffect(() => {
   getTask();*/
 
   const getUser = async (credentials) =>{
-    const resp= await fetch('http://192.168.123.231:5000/userauth/user', {
+    const resp= await fetch('https://paradeapp.herokuapp.com/userauth/user', {
         method: 'GET',
         headers:{'Content-Type': 'application/json'},
         Credentials: 'include'
@@ -60,6 +61,12 @@ useEffect(() => {
     const data= await resp.json()
     setUser(data.name)
     setRank(data.rank)
+
+    if(data.roles === 'admin'){
+      setIsAdmin(true)
+    
+    }
+    
 }
 
   getUser();
@@ -81,6 +88,109 @@ useEffect(() => {
     .then(data=> setTasks(data))
   }, [])*/
 
+
+
+if(isAdmin==true){
+  return(
+    <SafeAreaView >
+
+    <View>
+      <CustomProfile 
+      imageUri={require('../../../assets/logo.png')}
+      profileName={user}
+      profileRank={rank} />
+    </View>
+<View style={styles.search}>
+<CustomInput placeholder='Find Project'/>
+</View>
+
+    
+
+      <ScrollView
+      scrollEventThrottle={20}>
+<View style={{flex:1, padding: 10}}>
+
+<View style={styles.latest}>
+        <Text style={{ fontSize:25, 
+        fontWeight: 'bold', 
+        color:'#052E8F',
+        marginTop:10,
+        paddingHorizontal: 20}}>
+          Latest Project
+          </Text>
+          {/*<TouchableOpacity onPress={()=>handleNewTask(props)}>
+          <Text>New Tak</Text>
+        </TouchableOpacity>*/}
+          
+
+          </View>
+
+
+          <View style={{ height:450, marginTop: 20, alignItems:'center'}}>
+            <ScrollView horizontal={false}
+            showsHorizontalScrollIndicator={false}>
+
+{projects && projects.map((project)=>(
+              <View key={project._id}>
+                <CustomScrollItem title={project.title} 
+                deadline={project.deadline} 
+                details= {project.message}
+                category= "Avionics, Powerplant"
+                tasks= {project.tasks}
+                />
+
+              </View>
+           ))}
+
+           
+
+           <CustomScrollItem />
+              
+            </ScrollView>
+
+          </View>
+          </View>
+
+      </ScrollView>
+
+      
+
+     {/* <View style={{marginTop:5, padding:10}}>
+        <Text style={{fontSize:24, fontWeight:'bold', 
+        paddingHorizontal:20, 
+        color:'#052E8F',
+        marginTop:5,}}>Upcoming Events</Text>
+
+        <View style={{marginTop: 20, paddingHorizontal:20, height:180}}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+
+           {/* {tasks && tasks.map((task)=>(
+              <View key={task.id}>
+                <CustomEvent text={task.title} type='REGULAR' date={task.deadline}/>
+
+              </View>
+           ))} 
+
+            
+
+            
+            
+          </ScrollView>
+        </View>
+      </View>*/}
+
+      <View style={{alignItems: 'center'}}>
+
+      <View style={{width: 150, margin: 'auto',  }}>
+        <CustomButton text='New Project' onPress={()=>handleNewTask(props)}/>
+        </View>
+        </View>
+  
+  </SafeAreaView>
+  )
+}
+
+else {
 
 
   return (
@@ -110,16 +220,16 @@ useEffect(() => {
           paddingHorizontal: 20}}>
             Latest Project
             </Text>
-            <TouchableOpacity onPress={()=>handleNewTask(props)}>
+            {/*<TouchableOpacity onPress={()=>handleNewTask(props)}>
             <Text>New Tak</Text>
-            </TouchableOpacity>
+          </TouchableOpacity>*/}
             
 
             </View>
 
 
-            <View style={{ height:280, marginTop: 20}}>
-              <ScrollView horizontal={true}
+            <View style={{ height:450, marginTop: 20, alignItems:'center'}}>
+              <ScrollView horizontal={false}
               showsHorizontalScrollIndicator={false}>
 
 {projects && projects.map((project)=>(
@@ -147,7 +257,7 @@ useEffect(() => {
 
         
 
-        <View style={{marginTop:5, padding:10}}>
+       {/* <View style={{marginTop:5, padding:10}}>
           <Text style={{fontSize:24, fontWeight:'bold', 
           paddingHorizontal:20, 
           color:'#052E8F',
@@ -161,30 +271,21 @@ useEffect(() => {
                   <CustomEvent text={task.title} type='REGULAR' date={task.deadline}/>
 
                 </View>
-             ))} */}
+             ))} 
 
               
 
-              <CustomEvent text='Chief visit to unit' type='URGENT' date='22-04-22'/>
-
-              <CustomEvent text='Chief visit to unit' date='22-04-22' />
-
-              <CustomEvent text='Chief visit to unit' type='REGULAR' date='22-04-22'/>
-
-              <CustomEvent text='Chief visit to unit' type='URGENT' date='22-04-22'/>
-
-              <CustomEvent text='Chief visit to unit' type='URGENT' date='22-04-22'/> 
+              
               
             </ScrollView>
           </View>
-        </View>
+        </View>*/}
 
-        <View>
-          <CustomButton text='New Task' onPress={()=>handleNewTask(props)}/>
-          </View>
+       
     
     </SafeAreaView>
   );
+      }
 }
 
 

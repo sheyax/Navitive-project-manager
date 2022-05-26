@@ -19,7 +19,7 @@ export default function Signup(props) {
   
   const onRegisterPressed= async (credentials) =>{
 
-    const resp= await fetch('http://192.168.123.231:5000/userauth/register', {
+    const resp= await fetch('https://paradeapp.herokuapp.com/register', {
         method: 'POST',
         headers:{'Content-Type': 'application/json'},
         credentials: 'include',
